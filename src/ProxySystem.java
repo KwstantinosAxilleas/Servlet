@@ -1,4 +1,6 @@
 import java.io.IOException;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,14 +18,7 @@ public class ProxySystem extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/plain");
-        response.getWriter().println("ProxySystem GET response");
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/plain");
-        response.getWriter().println("ProxySystem POST response");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/proxy.html");
+        dispatcher.forward(request, response);
     }
 }
