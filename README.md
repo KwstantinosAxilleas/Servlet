@@ -1,18 +1,10 @@
-## Getting Started
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Part 1: Java Servlet Implementation
+Task:
+Create a Java Servlet named ProxySystem that listens on the /proxy-system endpoint.
+The servlet should respond with a simple text message: “System reached” and should land to the default swagger ui of your main dockerized application (eg swagger-ui/index.html)
+Deploy the servlet in a Java EE container (Tomcat). – No Docker is needed for this part, it is a native installation
+Requirements:
+Use javax.servlet.http.HttpServlet.
+Override the doGet method to send the response.
+Configure the servlet in web.xml or use @WebServlet annotation.
+Run and test the servlet using a web browser or Postman.
