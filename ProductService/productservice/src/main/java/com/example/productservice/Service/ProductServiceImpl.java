@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.example.productservice.Entitys.Product;
+import com.example.productservice.Exceptions.EntityNotFoundException;
 import com.example.productservice.Repository.ProductRepository;
-
-import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
