@@ -34,10 +34,10 @@ public class ProductController {
 
     @Operation(summary = "Retrieves all products", description = "Provides information about all products in database.")
 	@ApiResponses(value ={
-		@ApiResponse(responseCode = "404", description = "Products doesn't exist", content = @Content(schema = @Schema(implementation = Product.class))),
+		@ApiResponse(responseCode = "404", description = "Products don't exist", content = @Content(schema = @Schema(implementation = Product.class))),
         @ApiResponse(responseCode = "200", description = "Successful retrieval of products", content = @Content(schema = @Schema(implementation = Product.class))),
 	})
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<List<Product>> getProducts() {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
@@ -47,7 +47,7 @@ public class ProductController {
 		@ApiResponse(responseCode = "404", description = "Product doesn't exist", content = @Content(schema = @Schema(implementation = Product.class))),
         @ApiResponse(responseCode = "200", description = "Successful retrieval of product", content = @Content(schema = @Schema(implementation = Product.class))),
 	})
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable Long id) {
         return new ResponseEntity<>(productService.getProduct(id), HttpStatus.OK);
     }
@@ -57,7 +57,7 @@ public class ProductController {
 		@ApiResponse(responseCode = "404", description = "Product doesn't exist", content = @Content(schema = @Schema(implementation = Product.class))),
         @ApiResponse(responseCode = "200", description = "Successful retrieval of product", content = @Content(schema = @Schema(implementation = Product.class))),
 	})
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public ResponseEntity<Product> getProduct(@PathVariable String name) {
         return new ResponseEntity<>(productService.getProduct(name), HttpStatus.OK);
     }
@@ -65,7 +65,7 @@ public class ProductController {
 
     @Operation(summary = "Creates a product", description = "Saves a product to the database.")
 	@ApiResponse(responseCode = "201", description = "Product created successfully", content = @Content(schema = @Schema(implementation = Product.class)))
-    @PostMapping("")
+    @PostMapping()
     public ResponseEntity<Product> saveProduct(@Valid @RequestBody Product item) {
         return new ResponseEntity<>(productService.saveProduct(item), HttpStatus.CREATED);
     }
@@ -74,7 +74,7 @@ public class ProductController {
 	@ApiResponse(responseCode = "201", description = "Product updated successfully", content = @Content(schema = @Schema(implementation = Product.class)))
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product item) {
-        return new ResponseEntity<>(productService.updateProduct(id, item), HttpStatus.CREATED);
+        return new ResponseEntity<>(productService.updateProduct(id, item), HttpStatus.OK);
     }
 
     @Operation(summary = "Deletes a product", description = "Deletes a product from the database.")

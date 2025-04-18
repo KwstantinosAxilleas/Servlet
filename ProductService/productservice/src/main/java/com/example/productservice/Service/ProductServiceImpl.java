@@ -1,5 +1,6 @@
 package com.example.productservice.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,15 @@ import lombok.AllArgsConstructor;
 public class ProductServiceImpl implements ProductService {
 
     ProductRepository productRepository;
+    private final List<Product> inMemoryProducts = new ArrayList<>();
+
 
     @Override
     public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAll();
-    }
+    List<Product> all = new ArrayList<>(inMemoryProducts);
+    productRepository.findAll().forEach(all::add);
+    return all;
+}
 
 
     @Override
@@ -38,11 +43,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(Long productId, Product product) {
+    public Product updateProduct(Long productId, Product updatedProduct) {
         Optional<Product> databaseProduct = productRepository.findById(productId);
-        Product unwrappedDatabaseProduct = unwrapProduct(databaseProduct, productId);
-        Product newProduct = new Product(unwrappedDatabaseProduct);
-        return productRepository.save(newProduct);
+        Product existingProduct = unwrapProduct(databaseProduct, productId);
+        existingProduct.setName(updatedProduct.getName());
+        existingProduct.setPrice(updatedProduct.getPrice());
+        return productRepository.save(existingProduct);
     }
 
     @Override

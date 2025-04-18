@@ -17,7 +17,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Product")
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -32,7 +32,7 @@ public class Product {
 
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Price must be in range (1-99999)")
-    @Digits(integer = 5, fraction = 2)
+    @Digits(integer = 10, fraction = 2)
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
