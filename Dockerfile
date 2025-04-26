@@ -1,11 +1,11 @@
-# Use official Tomcat base image
+# Use Tomcat with Java 17
 FROM tomcat:9.0-jdk17-temurin
 
-# Remove default apps (optional, cleaner)
+# Clean default apps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy your WAR file into Tomcat
-COPY target/Servlet.war /usr/local/tomcat/webapps/ROOT.war
+# Copy your WAR file directly
+COPY TechPro.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose port 8080
 EXPOSE 8080
