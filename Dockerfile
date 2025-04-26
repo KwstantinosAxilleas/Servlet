@@ -1,5 +1,5 @@
 # Use Tomcat with Java 17
-FROM tomcat:9.0-jdk17-temurin
+FROM tomcat:10.0-jdk17-temurin
 
 # Clean default apps
 RUN rm -rf /usr/local/tomcat/webapps/*
